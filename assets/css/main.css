@@ -1,0 +1,48 @@
+
+body{
+	background: #F2D7D5;
+	font-family: "Century Gothic";
+
+}
+
+button{
+	font-weight: bold;
+}
+
+.lista{
+	background: #FDEDEC;
+	width: 450px;
+  	padding: 15px;
+  	margin: 15px;
+}
+
+.it{
+	font-style: "Century Gothic";
+	font-size: 25px;
+	font-weight: bold;
+}
+
+ 
+.task-complete{
+  background: #00796b;
+  color:aliceblue;
+  text-decoration: line-through;
+}
+
+.remove-task {
+	opacity: 0;
+	position: absolute;
+	right: 20px;
+	text-decoration: none;
+	color: #7f8c8d;
+
+	transition: all .2s ease;
+}
+
+.task:hover .remove-task {
+	opacity: 1;
+}
+
+.remove-task:hover {
+	color: #333;
+} 
