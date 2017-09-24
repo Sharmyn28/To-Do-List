@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Expanded');
 
 body{
 	background: #F2D7D5;
-	font-family: "Century Gothic";
+	font-family: "Encode Sans Expanded";
+	margin: 0;
+	padding: 0;
 }
 
 button{
@@ -16,8 +19,7 @@ button{
 }
 
 .it{
-	font-style: "Century Gothic";
-	font-size: 25px;
+	font-size: 20px;
 	font-weight: bold;
 }
 
