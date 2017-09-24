@@ -2,14 +2,13 @@
 body{
 	background: #F2D7D5;
 	font-family: "Century Gothic";
-
 }
 
 button{
 	font-weight: bold;
 }
 
-.lista{
+.list{
 	background: #FDEDEC;
 	width: 450px;
   	padding: 15px;
