@@ -4,7 +4,7 @@ class Task{
 	constructor(title, duration){
 		this.title = title;
 		this.duration = duration;
-		this.isCompleted = false;
+		this.completed = false;
 	}
 }
 
@@ -80,7 +80,7 @@ class List{
 			}
 		]
 	}
-	add(task){
+	addTask(task){
 		this.tasks.push(task);
 	}
 	
@@ -88,8 +88,7 @@ class List{
 		if(numL == 1){
 			$.each(arr, function(index, value){
 				$("#list").append(`<form action="#">
-										<p><input type="checkbox" name="lis" id="${index}"><label for="${index}" class = "task">${value.title}<a class="remove-task">remove</a></label></p>
-		 							</form>`);
+										<p><input type="checkbox" name="lis" id="${index}"><label for="${index}" class = "task">${value.title}</label></p></form>`);
 			});
 			return true;
 		}else if (numL == 2){
@@ -97,8 +96,7 @@ class List{
 				$.each(arr, function(index, value){
 					console.log("/"+value.title); 
 					$('#new_List').append(`<form action="#">
-												<p><input type="checkbox" name="lis" id="${j}"><label for="${j}" class = "task">${value.title}</label></p>
-				 							</form>`);
+												<p><input type="checkbox" name="lis" id="${j}"><label for="${j}" class = "task">${value.title}</label></p></form>`);
 					});
 				return true;
 			}
@@ -144,8 +142,8 @@ class List{
 					swal("Great", "You have written: " + newTT + ", "+ newTD + " minutes", "success");
 					
 	//se instancio Task dentro del metodo puesto que por propiedades del uso de la libreria sweetAlert no capturaba el array
-					let newT = new Task(newTT, newTD);	
-					this.tasks.push(newT);
+					let newT = new Task(newTT, newTD);
+					this.addTask(newT);
 					this.toHTML(this.tasks,2);
 					console.log(this.tasks);
 					//return newT;
@@ -154,9 +152,8 @@ class List{
 	}
 	
 	completeTask(task) {
+		//this.tasks.completed = true;
 		task.classList.toggle('task-complete');
-		//this.tasks.isCompleted = true;
-		//console.log(newT);
 	}
 	
 	removeTask(task){
@@ -166,20 +163,19 @@ class List{
 		}, 400);
 	}
 
-	eventRemove(e){
-		// Remove task
-		if ( e.target.classList.contains('remove-task') ) {
-			this.removeTask(e.target);
-		// Complete Task
-		} else if ( e.target.classList.contains('task') ) {
-			this.completeTask(e.target);
-		}
-	}
-
 	init(){
 		this.toHTML(this.initialTasks,1);
 		$('#btnAdd').click( () => this.newTask());
-		$('input').click( () => this.eventRemove());
+		//$('.task').click( () => console.log(this));
+		document.addEventListener('click', (e)=> {
+			// Remove task
+			if ( e.target.classList.contains('remove-task') ) {
+				list.removeTask(e.target);
+			// Complete Task
+			} else if ( e.target.classList.contains('task') ) {
+				this.completeTask(e.target);
+			}
+		}, false);
 	}
 }
 
@@ -188,53 +184,6 @@ $(document).ready( () => {
 	list.init();
 })
 
-
-/*document.addEventListener('click', function(e) {
-	// Remove task
-	if ( e.target.classList.contains('remove-task') ) {
-		list.removeTask(e.target);
-
-	// Complete Task
-	} else if ( e.target.classList.contains('task') ) {
-		list.completeTask(e.target);
-
-	}
-}, false);*/
-
-
-/*
-var list = new List();
-printInitial();
-
-document.addEventListener('click', function(e) {
-	// Remove task
-	if ( e.target.classList.contains('remove-task') ) {
-		list.removeTask(e.target);
-
-	// Complete Task
-	} else if ( e.target.classList.contains('task') ) {
-		list.completeTask(e.target);
-
-	}
-}, false);*/
-
-
-//*****************EXTRA*************
-
-var btnDelete = document.getElementById("btnDelete");
-btnDelete.onclick = function (){
-	var nombre = document.getElementById("nombre").value;
-
-	for(var i in pasajeros){
-		if(pasajeros[i].nombre == nombre){
-			console.log(pasajeros[i]);
-			pasajeros.splice(i,1);
-			reinicia();
-			global.style.backgroundColor = "transparent";
-			//return true;
-		}		
-	}
-};
 
 /*
 var arrFrases = [
